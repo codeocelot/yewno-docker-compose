@@ -1,0 +1,18 @@
+server:
+  build: ./yewno-server
+  # build: https://github.com/codeocelot/yewno-server
+  # build: //github.com/codeocelot/yewno-server
+  # build: github.com/codeocelot/yewno-server
+  # build: git://github.com/codeocelot/yewno-server
+  links:
+    - redis
+  ports:
+    - "3000:3000"
+redis:
+  image: redis
+client:
+  build: ./yewno-client
+  ports:
+    - '2000:80'
+  links: 
+    - server
