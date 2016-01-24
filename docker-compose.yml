@@ -1,5 +1,6 @@
 server:
-  build: ./yewno-server
+  build: ./yewno-tornado-server
+  # build: ./yewno-server
   # build: https://github.com/codeocelot/yewno-server
   # build: //github.com/codeocelot/yewno-server
   # build: github.com/codeocelot/yewno-server
@@ -8,11 +9,17 @@ server:
     - redis
   ports:
     - "3000:3000"
+  restart: always
+  volumes:
+    - ./yewno-tornado-server:/code
+
 redis:
   image: redis
+  restart: always
 client:
   build: ./yewno-client
   ports:
     - '2000:80'
-  links: 
+  links:
     - server
+  restart: always
